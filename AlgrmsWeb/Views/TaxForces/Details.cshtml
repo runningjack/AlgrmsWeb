@@ -1,0 +1,115 @@
+﻿@model AlgrmsWeb.Models.TaxForce
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TaxForce</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.issuer_code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.issuer_code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.task_force_code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.task_force_code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.task_force_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.task_force_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.task_force_description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.task_force_description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.task_force_address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.task_force_address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.task_force_phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.task_force_phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.task_force_email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.task_force_email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.view_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.view_status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.active_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.active_status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.enabled_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.enabled_status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.created_at)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.created_at)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.updated_at)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.updated_at)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
