@@ -17,11 +17,16 @@ namespace AlgrmsWeb.Models
 
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; } 
-        public string code { get; set; }
+        public int id { get; set; }
+        [StringLength(8)]
+        public string category_code { get; set; }
+        [StringLength(50)]
         public string title { get; set; }
+        [StringLength(500)]
         public string description { get; set; }
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
+
+
     }
 }

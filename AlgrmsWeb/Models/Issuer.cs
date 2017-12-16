@@ -7,12 +7,17 @@ using System.Web;
 
 namespace AlgrmsWeb.Models
 {
-    [Table("Issuer")]
+    [Table("Issuers")]
     public class Issuer
     {
         public Issuer()
         {
-            TaxForces = new HashSet<TaxForce>();
+            taxforces = new HashSet<TaxForce>();
+            taxagents = new HashSet<TaxAgent>();
+            receptors = new HashSet<Receptor>();
+            taxregions = new HashSet<TaxRegion>();
+            revenuecharges = new HashSet<RevenueCharge>();
+            revenues = new HashSet<Revenue>();
         }
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
@@ -46,7 +51,12 @@ namespace AlgrmsWeb.Models
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
 
-        public IEnumerable<TaxForce> TaxForces { get; set; }
+        public ICollection<TaxForce> taxforces { get; set; }
+        public ICollection<Revenue> revenues { get; set; }
+        public ICollection<Receptor> receptors { get; set; }
+        public ICollection<TaxRegion> taxregions { get; set; }
+        public ICollection<TaxAgent> taxagents { get; set; }
+        public ICollection<RevenueCharge> revenuecharges { get; set; }
 
     }
 

@@ -814,6 +814,31 @@
     <Content Include="Views\TaxForces\Details.cshtml" />
     <Content Include="Views\TaxForces\Edit.cshtml" />
     <Content Include="Views\TaxForces\Index.cshtml" />
+    <Content Include="Views\Countries\Create.cshtml" />
+    <Content Include="Views\Countries\Delete.cshtml" />
+    <Content Include="Views\Countries\Details.cshtml" />
+    <Content Include="Views\Countries\Edit.cshtml" />
+    <Content Include="Views\Countries\Index.cshtml" />
+    <Content Include="Views\Receptors\Create.cshtml" />
+    <Content Include="Views\Receptors\Delete.cshtml" />
+    <Content Include="Views\Receptors\Details.cshtml" />
+    <Content Include="Views\Receptors\Edit.cshtml" />
+    <Content Include="Views\Receptors\Index.cshtml" />
+    <Content Include="Views\Zones\Create.cshtml" />
+    <Content Include="Views\Zones\Delete.cshtml" />
+    <Content Include="Views\Zones\Details.cshtml" />
+    <Content Include="Views\Zones\Edit.cshtml" />
+    <Content Include="Views\Zones\Index.cshtml" />
+    <Content Include="Views\Revenues\Create.cshtml" />
+    <Content Include="Views\Revenues\Delete.cshtml" />
+    <Content Include="Views\Revenues\Details.cshtml" />
+    <Content Include="Views\Revenues\Edit.cshtml" />
+    <Content Include="Views\Revenues\Index.cshtml" />
+    <Content Include="Views\RevenueCharges\Create.cshtml" />
+    <Content Include="Views\RevenueCharges\Delete.cshtml" />
+    <Content Include="Views\RevenueCharges\Details.cshtml" />
+    <Content Include="Views\RevenueCharges\Edit.cshtml" />
+    <Content Include="Views\RevenueCharges\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -823,12 +848,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CountriesController.cs" />
     <Compile Include="Controllers\IssuersController.cs" />
+    <Compile Include="Controllers\ReceptorsController.cs" />
+    <Compile Include="Controllers\RevenueChargesController.cs" />
+    <Compile Include="Controllers\RevenuesController.cs" />
     <Compile Include="Controllers\TaxAgentsController.cs" />
     <Compile Include="Controllers\TaxCategoryController.cs" />
     <Compile Include="Controllers\TaxForcesController.cs" />
+    <Compile Include="Controllers\ZonesController.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AlgrmsWebContext.cs" />
+    <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Issuer.cs" />
+    <Compile Include="Models\Receptor.cs" />
+    <Compile Include="Models\Revenue.cs" />
+    <Compile Include="Models\RevenueCharge.cs" />
+    <Compile Include="Models\Zone.cs" />
     <Compile Include="Models\TaxAgent.cs" />
     <Compile Include="Models\TaxCategory.cs" />
     <Compile Include="Models\TaxForce.cs" />

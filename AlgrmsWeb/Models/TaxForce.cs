@@ -7,16 +7,16 @@ using System.Web;
 
 namespace AlgrmsWeb.Models
 {
-    [Table("TaskForce")]
+    [Table("TaxForce")]
     public class TaxForce
     {
         public TaxForce()
         {
-            TaxAgents = new HashSet<TaxAgent>();
+            taxagents = new HashSet<TaxAgent>();
         }
         [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int id { get; set; }
+        //[DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        //public int id { get; set; }
         public string issuer_code { get; set; }
         
         public string task_force_code { get; set; }
@@ -31,6 +31,6 @@ namespace AlgrmsWeb.Models
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }
 
-        public IEnumerable<TaxAgent> TaxAgents { get; set; }
+        public ICollection<TaxAgent> taxagents { get; set; }
     }
 }

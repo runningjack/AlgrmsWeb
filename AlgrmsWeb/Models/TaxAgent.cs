@@ -7,7 +7,7 @@ using System.Web;
 
 namespace AlgrmsWeb.Models
 {
-    [Table("TaskAgents")]
+    [Table("TaxAgents")]
     public class TaxAgent
     {
         public TaxAgent()
@@ -16,8 +16,9 @@ namespace AlgrmsWeb.Models
         }
         [Key]
         public int id { get; set; }
+        public string issuer_code { get; set; }
+        
         [StringLength(8)]
-        public string task_force_code { get; set; }
         public string agent_code { get; set; }
         [StringLength(50)]
         public string first_name { get; set; }

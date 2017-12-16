@@ -1,0 +1,130 @@
+﻿@model IEnumerable<AlgrmsWeb.Models.Receptor>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.first_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.last_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.other_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.company_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dob)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.receptor_type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.addresse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.city)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.state)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.background)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nature_of_business)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.area_of_business)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.company_size)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.created_at)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.updated_at)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.first_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.last_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.other_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.company_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dob)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.receptor_type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.addresse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.city)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.state)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.country)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.background)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nature_of_business)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.area_of_business)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.company_size)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.created_at)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.updated_at)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.receptor_code }) |
+            @Html.ActionLink("Details", "Details", new { id=item.receptor_code }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.receptor_code })
+        </td>
+    </tr>
+}
+
+</table>

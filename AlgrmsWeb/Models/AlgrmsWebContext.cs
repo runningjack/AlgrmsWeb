@@ -17,9 +17,10 @@ namespace AlgrmsWeb.Models
     
         public AlgrmsWebContext() : base("name=AlgrmsWebContext")
         {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<AlgrmsWebContext,Migrations.Configuration>("AlgrmsWebContext"));
         }
 
-        public System.Data.Entity.DbSet<AlgrmsWeb.Models.TaxCategory> TaxCategoryModels { get; set; }
+        public System.Data.Entity.DbSet<AlgrmsWeb.Models.TaxCategory> TaxCategories { get; set; }
 
         public System.Data.Entity.DbSet<AlgrmsWeb.Models.Issuer> Issuers { get; set; }
 
@@ -28,5 +29,26 @@ namespace AlgrmsWeb.Models
         public System.Data.Entity.DbSet<AlgrmsWeb.Models.TaxRegion> TaxRegions { get; set; }
 
         public System.Data.Entity.DbSet<AlgrmsWeb.Models.TaxForce> TaxForces { get; set; }
+        public System.Data.Entity.DbSet<AlgrmsWeb.Models.Zone> Zones { get; set; }
+        public System.Data.Entity.DbSet<AlgrmsWeb.Models.Country> Countries { get; set; }
+        public System.Data.Entity.DbSet<AlgrmsWeb.Models.Receptor> Receptors { get; set; }
+        public System.Data.Entity.DbSet<AlgrmsWeb.Models.Revenue> Revenues { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+
+            //base.OnModelCreating(modelBuilder);
+            //modelBuilder.Entity<Country>()
+            //.HasMany(c => c.Zones)
+            
+            //.Map(m =>
+            //{
+            //    m.ToTable("Zones");
+            //    m.MapLeftKey("country_id");
+            //    m.MapRightKey("zone_id");
+            //});
+        }
+
+        public System.Data.Entity.DbSet<AlgrmsWeb.Models.RevenueCharge> RevenueCharges { get; set; }
     }
 }

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<AlgrmsWeb.Models.Country>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.iso_code_3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.country_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phone_code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.created_at)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.updated_at)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.iso_code_3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.country_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phone_code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.created_at)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.updated_at)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.country_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.country_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.country_id })
+        </td>
+    </tr>
+}
+
+</table>

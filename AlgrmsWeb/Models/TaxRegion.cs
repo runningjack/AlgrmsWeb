@@ -20,6 +20,7 @@ namespace AlgrmsWeb.Models
         public int id { get; set; }
         [StringLength(15)]
         public string code { get; set; }
+        public string  issuer_code { get; set; }
         [StringLength(50)]
         public string region_name { get; set; }
         [StringLength(250)]
