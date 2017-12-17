@@ -1,7 +1,7 @@
-namespace RBACv3.DatabaseInitializer
+namespace AlgrmsWeb.DatabaseInitializer
 {
     using Microsoft.AspNet.Identity;
-    using RBACv3.Models;
+    using AlgrmsWeb.Models;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
@@ -9,12 +9,12 @@ namespace RBACv3.DatabaseInitializer
     using System.Linq;
     using System.Threading.Tasks;
 
-    public class RBACDatabaseInitializer : CreateDatabaseIfNotExists<RBACDbContext>
+    public class RBACDatabaseInitializer : CreateDatabaseIfNotExists<AlgrmsWebContext>
     {
         private readonly string c_SysAdmin = "System Administrator";
         private readonly string c_DefaultUser = "Default User";
 
-        protected override void Seed(RBACDbContext context)
+        protected override void Seed(AlgrmsWebContext context)
         {
             //Create Default Roles...
             IList<ApplicationRole> defaultRoles = new List<ApplicationRole>();
@@ -53,8 +53,29 @@ namespace RBACv3.DatabaseInitializer
             //Create User with NO Roles...
             user = new ApplicationUser { UserName = "Guest", Email = "guest@somedomain.com", Firstname = "Guest", Lastname = "User", LastModified = DateTime.Now, Inactive = false, EmailConfirmed=true };
             result = UserManager.Create(user, "Gu3st12");
-
-          
+            context.Countries.AddOrUpdate(
+               c => c.country_id, new Country
+               {
+                   country_id = 156,
+                   iso_code_3 = "",
+                   country_name = "",
+                   created_at = DateTime.Now,
+                   phone_code = 234,
+                   updated_at = DateTime.Now,
+               });
+            context.Zones.AddOrUpdate(
+                z => z.zone_id,
+                new Zone { country_id = 156, state_name = "Lagos", code = "LG" },
+                new Zone { country_id = 156, state_name = "Ogun", code = "OG" },
+                new Zone { country_id = 156, state_name = "Abuja", code = "FCT" },
+                new Zone { country_id = 156, state_name = "ABIA", code = "AB" }
+                );
+            context.TaxCategories.AddOrUpdate(
+                t => t.id, new TaxCategory { category_code = "1000", title = "Permit", description = "Revenue category for license or permit", created_at = DateTime.Now, updated_at = DateTime.Now },
+                new TaxCategory { category_code = "2000", title = "Rate", description = "Revenue category for rate", created_at = DateTime.Now, updated_at = DateTime.Now },
+                new TaxCategory { category_code = "3000", title = "Levy", description = "Revenue category for license or permit", created_at = DateTime.Now, updated_at = DateTime.Now }
+                );
+            context.SaveChanges();
             base.Seed(context);
 
             //Create a permission...

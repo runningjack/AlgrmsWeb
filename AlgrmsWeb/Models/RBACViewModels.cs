@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace RBACv3.Models
+namespace AlgrmsWeb.Models
 {
     public class VerifyOTPPhoneViewModel
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace RBACv3.Models
+namespace AlgrmsWeb.Models
 {
     [Table("PERMISSIONS")]
     public class PERMISSION

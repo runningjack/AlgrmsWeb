@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace RBACv3.Models
+namespace AlgrmsWeb.Models
 {
     public class IndexViewModel
     {

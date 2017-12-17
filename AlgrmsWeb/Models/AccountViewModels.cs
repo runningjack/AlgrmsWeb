@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace RBACv3.Models
+namespace AlgrmsWeb.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

@@ -6,9 +6,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
 using System;
 using System.ComponentModel.DataAnnotations;
-using RBACv3.DatabaseInitializer;
+using AlgrmsWeb.DatabaseInitializer;
 
-namespace RBACv3.Models
+namespace AlgrmsWeb.Models
 {
     public class ApplicationUserLogin : IdentityUserLogin<int> { }
     public class ApplicationUserClaim : IdentityUserClaim<int> { }
@@ -149,38 +149,5 @@ namespace RBACv3.Models
         }
     }
 
-    public class RBACDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, int, ApplicationUserLogin, ApplicationUserRole, ApplicationUserClaim>
-    {        
-        public DbSet<PERMISSION> PERMISSIONS { get; set; }     
-
-        public RBACDbContext() : base("DefaultConnection")
-        {
-            Database.SetInitializer<RBACDbContext>(new RBACDatabaseInitializer());
-
-        }
-
-        public static RBACDbContext Create()
-        {
-            return new RBACDbContext();
-        }
-
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<ApplicationUser>().ToTable("USERS").Property(p => p.Id).HasColumnName("UserId");
-            modelBuilder.Entity<ApplicationRole>().ToTable("ROLES").Property(p => p.Id).HasColumnName("RoleId");
-            modelBuilder.Entity<ApplicationUserRole>().ToTable("LNK_USER_ROLE");           
-
-            modelBuilder.Entity<ApplicationRole>().
-            HasMany(c => c.PERMISSIONS).
-            WithMany(p => p.ROLES).
-            Map(
-                m =>
-                {
-                    m.MapLeftKey("RoleId");
-                    m.MapRightKey("PermissionId");
-                    m.ToTable("LNK_ROLE_PERMISSION");
-                });            
-        }
-    }
+   
 }
