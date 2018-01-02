@@ -21,14 +21,35 @@ namespace AlgrmsWeb.Controllers
             return View(await db.TaxForces.ToListAsync());
         }
 
-        // GET: TaxForces/Details/5
-        public async Task<ActionResult> Details(int? id)
+        // GET: Revenues/Details/5
+        public async Task<ActionResult> Details(string code ="")
         {
-            if (id == null)
+            if (code == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TaxForce taxForce = await db.TaxForces.FindAsync(id);
+            TaxForce taxForce = await db.TaxForces.Where(tf => tf.task_force_code == code).FirstOrDefaultAsync();
+            if (taxForce == null)
+            {
+                return HttpNotFound();
+            }
+            IEnumerable<SelectListItem> items = db.Issuers.Select(c => new SelectListItem
+            {
+                Value = c.issuer_code,
+                Text = c.issuer_name
+            });
+            ViewBag.issuers = items;
+            return View(taxForce);
+        }
+
+        // GET: TaxForces/GetDetailsByCode/5
+        public async Task<ActionResult> GetDetailsByCode (string code ="")
+        {
+            if(code == "")
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            TaxForce taxForce = await db.TaxForces.Where(tf => tf.task_force_code == code).FirstOrDefaultAsync();
             if (taxForce == null)
             {
                 return HttpNotFound();
@@ -36,9 +57,16 @@ namespace AlgrmsWeb.Controllers
             return View(taxForce);
         }
 
+        
+
         // GET: TaxForces/Create
         public ActionResult Create()
         {
+            IEnumerable<SelectListItem> items = db.Issuers.Select(c => new SelectListItem{
+                Value = c.issuer_code,
+                Text = c.issuer_name
+            });
+            ViewBag.issuers = items;
             return View();
         }
 
@@ -47,7 +75,7 @@ namespace AlgrmsWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id,issuer_code,task_force_code,task_force_name,task_force_description,task_force_address,task_force_phone,task_force_email,view_status,active_status,enabled_status,created_at,updated_at")] TaxForce taxForce)
+        public async Task<ActionResult> Create([Bind(Include = "issuer_code,task_force_code,task_force_name,task_force_description,task_force_address,task_force_phone,task_force_email,view_status,active_status,enabled_status,created_at,updated_at")] TaxForce taxForce)
         {
             if (ModelState.IsValid)
             {
@@ -55,22 +83,35 @@ namespace AlgrmsWeb.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-
+            IEnumerable<SelectListItem> items = db.Issuers.Select(c => new SelectListItem
+            {
+                Value = c.issuer_code,
+                Text = c.issuer_name
+            });
+            ViewBag.issuers = items;
             return View(taxForce);
         }
 
+
+        
         // GET: TaxForces/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public async Task<ActionResult> Edit(string code ="")
         {
-            if (id == null)
+            if (code == "")
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TaxForce taxForce = await db.TaxForces.FindAsync(id);
+            TaxForce taxForce = await db.TaxForces.Where(tf => tf.task_force_code == code).FirstOrDefaultAsync();
             if (taxForce == null)
             {
                 return HttpNotFound();
             }
+            IEnumerable<SelectListItem> items = db.Issuers.Select(c => new SelectListItem
+            {
+                Value = c.issuer_code,
+                Text = c.issuer_name
+            });
+            ViewBag.issuers = items;
             return View(taxForce);
         }
 
@@ -79,7 +120,7 @@ namespace AlgrmsWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id,issuer_code,task_force_code,task_force_name,task_force_description,task_force_address,task_force_phone,task_force_email,view_status,active_status,enabled_status,created_at,updated_at")] TaxForce taxForce)
+        public async Task<ActionResult> Edit([Bind(Include = "issuer_code,task_force_code,task_force_name,task_force_description,task_force_address,task_force_phone,task_force_email,view_status,active_status,enabled_status,created_at,updated_at")] TaxForce taxForce)
         {
             if (ModelState.IsValid)
             {
@@ -87,17 +128,23 @@ namespace AlgrmsWeb.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            IEnumerable<SelectListItem> items = db.Issuers.Select(c => new SelectListItem
+            {
+                Value = c.issuer_code,
+                Text = c.issuer_name
+            });
+            ViewBag.issuers = items;
             return View(taxForce);
         }
 
         // GET: TaxForces/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public async Task<ActionResult> Delete(string code="")
         {
-            if (id == null)
+            if (code == "")
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TaxForce taxForce = await db.TaxForces.FindAsync(id);
+            TaxForce taxForce = await db.TaxForces.Where(tf => tf.task_force_code == code).FirstOrDefaultAsync();
             if (taxForce == null)
             {
                 return HttpNotFound();
@@ -108,9 +155,9 @@ namespace AlgrmsWeb.Controllers
         // POST: TaxForces/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(string code)
         {
-            TaxForce taxForce = await db.TaxForces.FindAsync(id);
+            TaxForce taxForce = await db.TaxForces.Where(tf => tf.task_force_code == code).FirstOrDefaultAsync(); ;
             db.TaxForces.Remove(taxForce);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");

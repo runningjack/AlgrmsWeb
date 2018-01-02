@@ -1,58 +1,70 @@
-﻿@model IEnumerable<AlgrmsWeb.Models.TaxCategoryModel>
+﻿@model IEnumerable<AlgrmsWeb.Models.TaxCategory>
 
 @{
-    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<section class="content-header content-center">
+    <h1>
+        Tax Categories List
+        @{
 
-<h2>Index</h2>
+            <span class="new-button"><a href="#" class="btn btn-primary btn-sm"><span class="fa fa-plus"></span> &nbsp;Add New</a></span>
+            <span><a href="#" class="btn btn-primary btn-sm"><span class="fa fa-download"></span> &nbsp;Import</a></span>
+        }
+    </h1>
+</section>
+<section class="content content-center">
+    <div class="box box-primary">
+        <div class="box-body">
+            <div class="table table-responsive">
+                <table class="table table-striped table-hover" id="tbl-items">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.category_code)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.created_at)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.updated_at)
+                        </th>
+                        <th></th>
+                    </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.code)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.created_at)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.updated_at)
-        </th>
-        <th></th>
-    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.category_code)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.description)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.created_at)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.updated_at)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { category_code = item.category_code }) |
+                                @Html.ActionLink("Details", "Details", new { category_code = item.category_code }) |
+                                @Html.ActionLink("Delete", "Delete", new { category_code = item.category_code })
+                            </td>
+                        </tr>
+                    }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.code)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.created_at)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.updated_at)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
-
-</table>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

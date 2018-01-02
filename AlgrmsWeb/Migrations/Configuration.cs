@@ -41,7 +41,7 @@ namespace AlgrmsWeb.Migrations
                 new Zone {country_id = 156, state_name = "ABIA", code = "AB" }
                 );
             context.TaxCategories.AddOrUpdate(
-                t=>t.id,new TaxCategory {category_code = "1000",title = "Permit", description ="Revenue category for license or permit", created_at = DateTime.Now, updated_at = DateTime.Now },
+                t=>t.category_code,new TaxCategory {category_code = "1000",title = "Permit", description ="Revenue category for license or permit", created_at = DateTime.Now, updated_at = DateTime.Now },
                 new TaxCategory { category_code = "2000", title = "Rate", description = "Revenue category for rate", created_at = DateTime.Now, updated_at = DateTime.Now },
                 new TaxCategory { category_code = "3000", title = "Levy", description = "Revenue category for license or permit", created_at = DateTime.Now, updated_at = DateTime.Now }
                 );

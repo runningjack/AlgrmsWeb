@@ -1,155 +1,216 @@
 ﻿@model AlgrmsWeb.Models.Receptor
+<script type="text/javascript">
+    $(document).ready(function () {
+        //$('#AddUser').attr("disabled", true);
+        $('#AddRevenue').click(function () {
+           
+            var _receptorCode = $('#receptor_code').val();
+            var _revenueCode = $('#revenueCodes').val();
+
+            if (_receptorCode == '') {
+                return false;
+            }
+
+            var _parameters = { revenueCode: _revenueCode, receptorCode: _receptorCode };
+            $.ajax({
+                url: "/Receptors/AddRevenueToReceptor",
+                type: "POST",
+                data: _parameters,
+                success: function (data, textStatus, jqXHR) {
+                    $('#RevenueTable').html(data);
+                    //$('#UserId').val("");
+                }
+            });
+        });
+    });
+</script>
 
 @{
-    ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<section class="content-header content-center">
+    <h2>
+        Details
+    </h2>
+</section>
+<section class="content content-center">
+    <div class="box box-primary">
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div>
+                        <h4>Receptor</h4>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.first_name)
+                            </dt>
 
-<div>
-    <h4>Receptor</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.first_name)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.first_name)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.first_name)
-        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.last_name)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.last_name)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.last_name)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.last_name)
-        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.other_name)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.other_name)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.other_name)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.other_name)
-        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.company_name)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.company_name)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.company_name)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.company_name)
-        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.dob)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.dob)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.dob)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.dob)
-        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.gender)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.gender)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.gender)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.gender)
-        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.receptor_type)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.receptor_type)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.receptor_type)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.receptor_type)
-        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.addresse)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.addresse)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.addresse)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.addresse)
-        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.city)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.city)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.city)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.city)
-        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.state)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.state)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.state)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.state)
-        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.country)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.country)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.country)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.country)
-        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.background)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.background)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.background)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.background)
-        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.nature_of_business)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.nature_of_business)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.nature_of_business)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.nature_of_business)
-        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.area_of_business)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.area_of_business)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.area_of_business)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.area_of_business)
-        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.company_size)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.company_size)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.company_size)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.company_size)
-        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.created_at)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.created_at)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.created_at)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.created_at)
-        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.updated_at)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.updated_at)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.updated_at)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.updated_at)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.receptor_code }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                        </dl>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <fieldset>
+                        <legend>
+                            <h3>
+                                Associated Revenues
+                            </h3>
+                        </legend>
+                        <div class="panel" id="RevenueTable">
+                            @Html.Partial("_ListReceptorRevenueTable", Model)
+                        </div>
+                    </fieldset>
+                    @Html.HiddenFor(model => model.receptor_code)
+                    <fieldset style="padding: 1em; font: 100%; color: Black; border-color: Black; border-style: solid;
+    border-width: thin; border-color: Silver;">
+                        <legend style="width:auto; border-style:none"><strong>Add Revenue to Receptor</strong></legend>
+                        <br />
+                        <label>Revenue:  </label>
+                        @Html.DropDownList("revenueCode", new SelectList(ViewBag.revenues, "value", "text"), " Select Revenue", new { @class = "form-control select" })
+                        <input class="btn btn-primary" type="button" id="AddRevenue" value="Add Revenue To Receptor" />
+                    </fieldset>
+                </div>
+            </div>
+            
+        </div>
+        <div class="box-footer">
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { code = Model.receptor_code }) |
+                @Html.ActionLink("Back to List", "Index")
+            </p>
+        </div>
+    </div>
+</section>

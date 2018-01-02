@@ -18,7 +18,9 @@ namespace AlgrmsWeb.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int zone_id { get; set; }
         public int country_id { get; set; }
+        [Column(TypeName = "VARCHAR")]
         public string state_name { get; set; }
+        [Column(TypeName = "VARCHAR")]
         public string code { get; set; }
         public DateTime created_at { get; set; }
         public DateTime updated_at { get; set; }

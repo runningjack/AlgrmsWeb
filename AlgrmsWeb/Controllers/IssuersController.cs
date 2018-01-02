@@ -22,13 +22,13 @@ namespace AlgrmsWeb.Controllers
         }
 
         // GET: Issuers/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public async Task<ActionResult> Details(string code ="")
         {
-            if (id == null)
+            if (code == "")
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Issuer issuer = await db.Issuers.FindAsync(id);
+            Issuer issuer = await db.Issuers.Where(s=> s.issuer_code == code).FirstOrDefaultAsync();
             if (issuer == null)
             {
                 return HttpNotFound();
@@ -39,6 +39,13 @@ namespace AlgrmsWeb.Controllers
         // GET: Issuers/Create
         public ActionResult Create()
         {
+            IEnumerable<SelectListItem> items = db.Zones.Select(z => new SelectListItem
+            {
+                Value = z.state_name,// z.zone_id.ToString(),
+                Text = z.state_name
+            });
+
+            ViewBag.zones = items;
             return View();
         }
 
@@ -47,30 +54,48 @@ namespace AlgrmsWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id,issuer_code,issuer_name,issuer_contact_name,issuer_conatct_phone,issuer_email,issuer_desription,issuer_address,issuer_city,issuer_state,issuer_country,view_status,active_status,issuer_geo_data,created_at,updated_at")] Issuer issuer)
+        public async Task<ActionResult> Create([Bind(Include = "issuer_code,issuer_name,issuer_contact_name,issuer_conatct_phone,issuer_email,issuer_desription,issuer_address,issuer_city,issuer_state,issuer_country,view_status,active_status,issuer_geo_data,created_at,updated_at")] Issuer issuer)
         {
+            if(issuer != null)
+            {
+                int k = 0;
+            }
             if (ModelState.IsValid)
             {
                 db.Issuers.Add(issuer);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            IEnumerable<SelectListItem> items = db.Zones.Select(z => new SelectListItem
+            {
+                Value = z.state_name,// z.zone_id.ToString(),
+                Text = z.state_name
+            });
 
+            ViewBag.zones = items;
             return View(issuer);
         }
 
         // GET: Issuers/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public async Task<ActionResult> Edit(string code ="")
         {
-            if (id == null)
+
+            if (code == "")
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Issuer issuer = await db.Issuers.FindAsync(id);
+            Issuer issuer = await db.Issuers.Where(s => s.issuer_code == code).FirstOrDefaultAsync();
             if (issuer == null)
             {
                 return HttpNotFound();
             }
+            IEnumerable<SelectListItem> items = db.Zones.Select(z => new SelectListItem
+            {
+                Value = z.state_name,// z.zone_id.ToString(),
+                Text = z.state_name
+            });
+
+            ViewBag.Zones = items;
             return View(issuer);
         }
 
@@ -79,7 +104,7 @@ namespace AlgrmsWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id,issuer_code,issuer_name,issuer_contact_name,issuer_conatct_phone,issuer_email,issuer_desription,issuer_address,issuer_city,issuer_state,issuer_country,view_status,active_status,issuer_geo_data,created_at,updated_at")] Issuer issuer)
+        public async Task<ActionResult> Edit([Bind(Include = "issuer_code,issuer_name,issuer_contact_name,issuer_conatct_phone,issuer_email,issuer_desription,issuer_address,issuer_city,issuer_state,issuer_country,view_status,active_status,issuer_geo_data,created_at,updated_at")] Issuer issuer)
         {
             if (ModelState.IsValid)
             {

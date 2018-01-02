@@ -229,10 +229,26 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\ionicons.min.css" />
+    <Content Include="Content\css\jqueryui\images\animated-overlay.gif" />
+    <Content Include="Content\css\jqueryui\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="Content\css\jqueryui\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="Content\css\jqueryui\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="Content\css\jqueryui\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="Content\css\jqueryui\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\css\jqueryui\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="Content\css\jqueryui\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="Content\css\jqueryui\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="Content\css\jqueryui\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\css\jqueryui\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="Content\css\jqueryui\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="Content\css\jqueryui\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="Content\css\jqueryui\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\css\jqueryui\jquery-ui-1.10.4.custom.min.css" />
     <Content Include="Content\fonts\ionicons.svg" />
     <Content Include="Content\js\dashboard2.js" />
     <Content Include="Content\js\plugins\chart\Chart.js" />
     <Content Include="Content\js\plugins\chart\Chart.min.js" />
+    <Content Include="Content\js\plugins\jqueryui\jquery-ui-1.10.4.min.js" />
     <Content Include="Content\png\512\alert-circled.png" />
     <Content Include="Content\png\512\alert.png" />
     <Content Include="Content\png\512\android-add-contact.png" />
@@ -882,11 +898,6 @@
     <Content Include="Views\Zones\Details.cshtml" />
     <Content Include="Views\Zones\Edit.cshtml" />
     <Content Include="Views\Zones\Index.cshtml" />
-    <Content Include="Views\Revenues\Create.cshtml" />
-    <Content Include="Views\Revenues\Delete.cshtml" />
-    <Content Include="Views\Revenues\Details.cshtml" />
-    <Content Include="Views\Revenues\Edit.cshtml" />
-    <Content Include="Views\Revenues\Index.cshtml" />
     <Content Include="Views\RevenueCharges\Create.cshtml" />
     <Content Include="Views\RevenueCharges\Delete.cshtml" />
     <Content Include="Views\RevenueCharges\Details.cshtml" />
@@ -942,6 +953,12 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Unauthorised\Error.cshtml" />
     <Content Include="Views\Unauthorised\Index.cshtml" />
+    <Content Include="Views\Revenues\Create.cshtml" />
+    <Content Include="Views\Revenues\Delete.cshtml" />
+    <Content Include="Views\Revenues\Details.cshtml" />
+    <Content Include="Views\Revenues\Edit.cshtml" />
+    <Content Include="Views\Revenues\Index.cshtml" />
+    <Content Include="Views\Receptors\_ListReceptorRevenueTable.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -957,8 +974,10 @@
     <Compile Include="Common\RBAC_ExtendedMethods.cs" />
     <Compile Include="Common\RBAC_IdentityExtendedMethods.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CountriesController.cs" />
     <Compile Include="Controllers\IssuersController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ReceptorsController.cs" />
     <Compile Include="Controllers\RevenueChargesController.cs" />
     <Compile Include="Controllers\RevenuesController.cs" />
@@ -988,6 +1007,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\AdminLTE.css" />

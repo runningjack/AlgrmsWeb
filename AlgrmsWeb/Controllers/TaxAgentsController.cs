@@ -39,6 +39,12 @@ namespace AlgrmsWeb.Controllers
         // GET: TaxAgents/Create
         public ActionResult Create()
         {
+            IEnumerable<SelectListItem> items = db.Zones.Select(z => new SelectListItem { Value = z.state_name, Text = z.state_name });
+            IEnumerable<SelectListItem> issuers = db.Issuers.Select(iss => new SelectListItem { Value = iss.issuer_code, Text = iss.issuer_name });
+            IEnumerable<SelectListItem> forces = db.TaxForces.Select(t => new SelectListItem { Value = t.task_force_code, Text = t.task_force_name });
+            ViewBag.IssuersList = issuers;
+            ViewBag.zones = items;
+            ViewBag.forces = forces;
             return View();
         }
 
@@ -47,7 +53,7 @@ namespace AlgrmsWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id,agent_code,first_name,last_name,other_name,dob,gender,address,city,state,country,created_at,updated_at")] TaxAgent taxAgent)
+        public async Task<ActionResult> Create([Bind(Include = "issuer_code,tax_force_code,agent_code,first_name,last_name,other_name,dob,gender,address,city,state,country,created_at,updated_at")] TaxAgent taxAgent)
         {
             if (ModelState.IsValid)
             {
@@ -55,7 +61,12 @@ namespace AlgrmsWeb.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-
+            IEnumerable<SelectListItem> items = db.Zones.Select(z => new SelectListItem { Value = z.state_name, Text = z.state_name });
+            IEnumerable<SelectListItem> issuers = db.Issuers.Select(iss => new SelectListItem { Value = iss.issuer_code, Text = iss.issuer_name });
+            IEnumerable<SelectListItem> forces = db.TaxForces.Select(t => new SelectListItem { Value = t.task_force_code, Text = t.task_force_name });
+            ViewBag.IssuersList = issuers;
+            ViewBag.zones = items;
+            ViewBag.forces = forces;
             return View(taxAgent);
         }
 
@@ -71,6 +82,12 @@ namespace AlgrmsWeb.Controllers
             {
                 return HttpNotFound();
             }
+            IEnumerable<SelectListItem> items = db.Zones.Select(z => new SelectListItem { Value = z.state_name, Text = z.state_name });
+            IEnumerable<SelectListItem> issuers = db.Issuers.Select(iss => new SelectListItem { Value = iss.issuer_code, Text = iss.issuer_name });
+            IEnumerable<SelectListItem> forces = db.TaxForces.Select(t => new SelectListItem { Value = t.task_force_code, Text = t.task_force_name });
+            ViewBag.IssuersList = issuers;
+            ViewBag.zones = items;
+            ViewBag.forces = forces;
             return View(taxAgent);
         }
 
@@ -79,7 +96,7 @@ namespace AlgrmsWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id,agent_code,first_name,last_name,other_name,dob,gender,address,city,state,country,created_at,updated_at")] TaxAgent taxAgent)
+        public async Task<ActionResult> Edit([Bind(Include = "issuer_code,tax_force_code,agent_code,first_name,last_name,other_name,dob,gender,address,city,state,country,created_at,updated_at")] TaxAgent taxAgent)
         {
             if (ModelState.IsValid)
             {
@@ -87,6 +104,12 @@ namespace AlgrmsWeb.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            IEnumerable<SelectListItem> items = db.Zones.Select(z => new SelectListItem { Value = z.state_name, Text = z.state_name });
+            IEnumerable<SelectListItem> issuers = db.Issuers.Select(iss => new SelectListItem { Value = iss.issuer_code, Text = iss.issuer_name });
+            IEnumerable<SelectListItem> forces = db.TaxForces.Select(t => new SelectListItem { Value = t.task_force_code, Text = t.task_force_name });
+            ViewBag.IssuersList = issuers;
+            ViewBag.zones = items;
+            ViewBag.forces = forces;
             return View(taxAgent);
         }
 

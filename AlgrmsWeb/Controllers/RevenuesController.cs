@@ -18,11 +18,12 @@ namespace AlgrmsWeb.Controllers
         // GET: Revenues
         public async Task<ActionResult> Index()
         {
+            
             return View(await db.Revenues.ToListAsync());
         }
 
         // GET: Revenues/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public async Task<ActionResult> Details(string id)
         {
             if (id == null)
             {
@@ -39,6 +40,17 @@ namespace AlgrmsWeb.Controllers
         // GET: Revenues/Create
         public ActionResult Create()
         {
+            IEnumerable<SelectListItem> items = db.TaxCategories.Select(c => new SelectListItem
+            {
+                Value = c.category_code,
+                Text = c.title
+
+            });
+
+            IEnumerable<SelectListItem> issuers = db.Issuers.Select(iss => new SelectListItem { Value = iss.issuer_code, Text = iss.issuer_name });
+           
+            ViewBag.TCategory = items;
+            ViewBag.IssuersList = issuers;
             return View();
         }
 
@@ -47,7 +59,7 @@ namespace AlgrmsWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id,category_code,revenue_code,revenue_name,description,frequency,amount,rate,created_at,updated_at")] Revenue revenue)
+        public async Task<ActionResult> Create([Bind(Include = "issuer_code,category_code,revenue_code,revenue_name,description,frequency,amount,rate,created_at,updated_at")] Revenue revenue)
         {
             if (ModelState.IsValid)
             {
@@ -60,17 +72,29 @@ namespace AlgrmsWeb.Controllers
         }
 
         // GET: Revenues/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public async Task<ActionResult> Edit(string code)
         {
-            if (id == null)
+            if (code == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Revenue revenue = await db.Revenues.FindAsync(id);
+            Revenue revenue = await db.Revenues.Where(r => r.revenue_code == code).FirstOrDefaultAsync();
             if (revenue == null)
             {
                 return HttpNotFound();
             }
+            IEnumerable<SelectListItem> items = db.TaxCategories.Select(c => new SelectListItem
+            {
+                Value = c.category_code,
+                Text = c.title
+
+            });
+
+            IEnumerable<SelectListItem> issuers = db.Issuers.Select(iss => new SelectListItem { Value = iss.issuer_code, Text = iss.issuer_name });
+
+            ViewBag.TCategory = items;
+            ViewBag.IssuersList = issuers;
+
             return View(revenue);
         }
 
@@ -79,7 +103,7 @@ namespace AlgrmsWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id,category_code,revenue_code,revenue_name,description,frequency,amount,rate,created_at,updated_at")] Revenue revenue)
+        public async Task<ActionResult> Edit([Bind(Include = "issuer_code,category_code,revenue_code,revenue_name,description,frequency,amount,rate,created_at,updated_at")] Revenue revenue)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +115,7 @@ namespace AlgrmsWeb.Controllers
         }
 
         // GET: Revenues/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public async Task<ActionResult> Delete(string id)
         {
             if (id == null)
             {
@@ -108,7 +132,7 @@ namespace AlgrmsWeb.Controllers
         // POST: Revenues/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(string id)
         {
             Revenue revenue = await db.Revenues.FindAsync(id);
             db.Revenues.Remove(revenue);

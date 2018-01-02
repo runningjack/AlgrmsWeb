@@ -19,11 +19,15 @@ namespace AlgrmsWeb.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
         [StringLength(15)]
+        [Column(TypeName = "VARCHAR")]
         public string code { get; set; }
+        [Column(TypeName = "VARCHAR")]
         public string  issuer_code { get; set; }
         [StringLength(50)]
+        [Column(TypeName = "VARCHAR")]
         public string region_name { get; set; }
         [StringLength(250)]
+        [Column(TypeName = "VARCHAR")]
         public string description { get; set; } 
         public bool status { get; set; }
         public DateTime created_at { get; set; }

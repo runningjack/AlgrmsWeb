@@ -15,6 +15,7 @@ namespace AlgrmsWeb.App_Start
                 .Include("~/Content/css/icheck/blue.min.css", new CssRewriteUrlTransformAbsolute())
                 .Include("~/Content/css/AdminLTE.css", new CssRewriteUrlTransformAbsolute())
                 .Include("~/Content/css/ionicons.min.css", new CssRewriteUrlTransformAbsolute())
+                .Include("~/Content/css/jqueryui/jquery-ui-1.10.4.custom.min.css")
                 .Include("~/Content/css/skins/skin-blue.css"));
 
             bundles.Add(new ScriptBundle("~/Bundles/js")
@@ -31,7 +32,7 @@ namespace AlgrmsWeb.App_Start
                 .Include("~/Content/js/plugins/inputmask/jquery.inputmask.bundle.js")
                 .Include("~/Content/js/adminlte.js")
                 .Include("~/Content/js/init.js")
-            .Include("~/Content/js/dashboard2.js"));
+            .Include("~/Content/js/plugins/jqueryui/jquery-ui-1.10.4.min.js"));
 
 #if DEBUG
             BundleTable.EnableOptimizations = false;

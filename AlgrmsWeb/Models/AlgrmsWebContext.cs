@@ -23,8 +23,8 @@ namespace AlgrmsWeb.Models
 
         public AlgrmsWebContext() : base("name=AlgrmsWebContext")
         {
-            Database.SetInitializer<AlgrmsWebContext>(new RBACDatabaseInitializer());
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<AlgrmsWebContext,Migrations.Configuration>("AlgrmsWebContext"));
+           Database.SetInitializer<AlgrmsWebContext>(new RBACDatabaseInitializer());
+           Database.SetInitializer(new MigrateDatabaseToLatestVersion<AlgrmsWebContext,Migrations.Configuration>("AlgrmsWebContext"));
         }
 
         public static AlgrmsWebContext Create()
@@ -36,6 +36,7 @@ namespace AlgrmsWeb.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Properties<DateTime>().Configure(c => c.HasColumnType("datetime2"));
             modelBuilder.Entity<ApplicationUser>().ToTable("USERS").Property(p => p.Id).HasColumnName("UserId");
             modelBuilder.Entity<ApplicationRole>().ToTable("ROLES").Property(p => p.Id).HasColumnName("RoleId");
             modelBuilder.Entity<ApplicationUserRole>().ToTable("LNK_USER_ROLE");

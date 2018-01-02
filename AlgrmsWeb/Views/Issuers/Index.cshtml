@@ -70,9 +70,9 @@
                             </td>
 
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                                @Html.ActionLink("Edit", "Edit", new { code = item.issuer_code }) |
+                                @Html.ActionLink("Details", "Details", new { code = item.issuer_code }) |
+                                @Html.ActionLink("Delete", "Delete", new { code = item.issuer_code })
                             </td>
                         </tr>
                     }
